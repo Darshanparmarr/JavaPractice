@@ -1,4 +1,4 @@
-package oops;
+package classesJavaOpps;
 
 public class Cricket {
     String playerName;

@@ -1,4 +1,4 @@
-package oops.inheritance.hierarchical;
+package classesJavaOpps.inheritance.hierarchical;
 
 class Car{
     public Car(){

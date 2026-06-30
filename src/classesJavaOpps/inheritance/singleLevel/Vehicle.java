@@ -1,4 +1,4 @@
-package oops.inheritance.singleLevel;
+package classesJavaOpps.inheritance.singleLevel;
 
 public class Vehicle {
     String speedMeter = "100KMPH";

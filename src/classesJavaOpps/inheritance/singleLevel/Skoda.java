@@ -1,4 +1,4 @@
-package oops.inheritance.singleLevel;
+package classesJavaOpps.inheritance.singleLevel;
 
 public class Skoda extends Vehicle {
     public static void main(String[] args) {

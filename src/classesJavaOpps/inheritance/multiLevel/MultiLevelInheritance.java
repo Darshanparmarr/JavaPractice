@@ -1,4 +1,4 @@
-package oops.inheritance.multiLevel;
+package classesJavaOpps.inheritance.multiLevel;
 
 class Car{
     public Car(){
