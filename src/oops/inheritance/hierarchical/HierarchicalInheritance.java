@@ -45,4 +45,5 @@ public class HierarchicalInheritance {
         child2.vehicleType();
 
     }
+
 }
