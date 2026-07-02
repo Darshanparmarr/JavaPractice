@@ -35,6 +35,7 @@ class Child extends Parent{
     }
 
 }
+
 public class UseOfSuperKeyword {
     public static void main(String[] args) {
         Child child = new Child();
