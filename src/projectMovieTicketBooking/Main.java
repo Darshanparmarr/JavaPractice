@@ -1,43 +1,68 @@
 package projectMovieTicketBooking;
 
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("========== MOVIE BOOKING ==========\n");
+        Scanner sc = new Scanner(System.in);
 
-        Movie movie1 = new Movie(
-                101,
-                "Avengers Endgame",
-                "English",
-                "3 Hours",
-                250);
+        Seat seat = new Seat();
 
-        Movie movie2 = new Movie(
-                102,
-                "Pushpa 2",
-                "Hindi",
-                "2 Hours 50 Minutes",
-                220);
+        while (true) {
 
-        Theater theater1 = new Theater(
-                1,
-                "PVR Cinemas",
-                "Mumbai");
+            System.out.println("\n========== MOVIE BOOKING ==========");
 
-        User user1 = new User(
-                1001,
-                "Darshan",
-                "9876543210");
+            System.out.println("1. View Seats");
+            System.out.println("2. Book Seat");
+            System.out.println("3. Exit");
 
-        movie1.displayMovie();
+            System.out.print("Choice : ");
 
-        movie2.displayMovie();
+            int choice = sc.nextInt();
 
-        theater1.displayTheater();
+            switch (choice) {
 
-        user1.displayUser();
+                case 1:
+
+                    seat.displaySeats();
+
+                    break;
+
+                case 2:
+
+                    seat.displaySeats();
+
+                    System.out.print("\nEnter Seat Number (Example A1): ");
+
+                    String seatNo = sc.next();
+
+                    if (seat.bookSeat(seatNo)) {
+
+                        System.out.println("\nSeat Booked Successfully!");
+                    } else {
+
+                        System.out.println("\nSeat Not Available or Invalid!");
+                    }
+
+                    break;
+
+                case 3:
+
+                    System.out.println("\nThank You!");
+
+                    sc.close();
+
+                    return;
+
+                default:
+
+                    System.out.println("Invalid Choice");
+            }
+
+        }
 
     }
 
