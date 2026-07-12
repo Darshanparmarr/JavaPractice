@@ -22,6 +22,10 @@ public class Theater {
         System.out.println("--------------------------");
     }
 
+    public String getTheaterName() {
+        return theaterName;
+    }
+
     @Override
     public String toString() {
 

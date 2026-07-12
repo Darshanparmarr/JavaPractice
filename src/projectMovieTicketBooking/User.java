@@ -21,4 +21,12 @@ public class User {
         System.out.println("---------------------------");
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
 }

@@ -1,6 +1,5 @@
 package projectMovieTicketBooking;
 
-
 import java.util.Scanner;
 
 public class Main {
@@ -9,17 +8,46 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
+        // Create Movie
+        Movie movie = new Movie(
+                101,
+                "Avengers Endgame",
+                "English",
+                "3 Hours",
+                250
+        );
+
+        // Create Theater
+        Theater theater = new Theater(
+                1,
+                "PVR Cinemas",
+                "Mumbai"
+        );
+
+        // Create User
+        User user = new User(
+                1001,
+                "Darshan",
+                "9876543210"
+        );
+
+        // Seat Object
         Seat seat = new Seat();
+
+        // Ticket Object
+        Ticket ticket = new Ticket();
 
         while (true) {
 
-            System.out.println("\n========== MOVIE BOOKING ==========");
-
-            System.out.println("1. View Seats");
-            System.out.println("2. Book Seat");
-            System.out.println("3. Exit");
-
-            System.out.print("Choice : ");
+            System.out.println("\n=================================");
+            System.out.println("     MOVIE TICKET BOOKING");
+            System.out.println("=================================");
+            System.out.println("1. View Movie");
+            System.out.println("2. View Theater");
+            System.out.println("3. View Seats");
+            System.out.println("4. Book Ticket");
+            System.out.println("5. Exit");
+            System.out.print("Enter Choice : ");
 
             int choice = sc.nextInt();
 
@@ -27,39 +55,67 @@ public class Main {
 
                 case 1:
 
-                    seat.displaySeats();
-
+                    movie.displayMovie();
                     break;
 
                 case 2:
 
-                    seat.displaySeats();
-
-                    System.out.print("\nEnter Seat Number (Example A1): ");
-
-                    String seatNo = sc.next();
-
-                    if (seat.bookSeat(seatNo)) {
-
-                        System.out.println("\nSeat Booked Successfully!");
-                    } else {
-
-                        System.out.println("\nSeat Not Available or Invalid!");
-                    }
-
+                    theater.displayTheater();
                     break;
 
                 case 3:
 
-                    System.out.println("\nThank You!");
+                    seat.displaySeats();
+                    break;
 
+                case 4:
+
+                    seat.displaySeats();
+
+                    System.out.print("\nHow many seats do you want to book? : ");
+                    int totalSeats = sc.nextInt();
+
+                    String[] bookedSeats = new String[totalSeats];
+
+                    for (int i = 0; i < totalSeats; i++) {
+
+                        System.out.print("Enter Seat " + (i + 1) + " (Example A1): ");
+
+                        String seatNo = sc.next();
+
+                        if (seat.bookSeat(seatNo)) {
+
+                            bookedSeats[i] = seatNo;
+
+                        } else {
+
+                            System.out.println("Seat already booked or invalid!");
+                            i--;
+                        }
+                    }
+
+                    Booking booking = new Booking(
+                            movie,
+                            theater,
+                            user,
+                            bookedSeats,
+                            totalSeats
+                    );
+
+                    ticket.printTicket(booking);
+
+                    break;
+
+                case 5:
+
+                    System.out.println("\nThank You for using Movie Ticket Booking System.");
                     sc.close();
-
                     return;
 
                 default:
 
-                    System.out.println("Invalid Choice");
+                    System.out.println("Invalid Choice!");
+
             }
 
         }
