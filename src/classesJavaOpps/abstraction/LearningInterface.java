@@ -16,6 +16,7 @@ interface Thirdable extends Printable, Secondable{
 }
 
 public class LearningInterface {
+
     public void display(){
         System.out.println("Display Method");
     }
@@ -23,4 +24,5 @@ public class LearningInterface {
     public static void main(String[] args) {
         new LearningInterface().display();
     }
+
 }
