@@ -9,20 +9,76 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         // Create Movie
-        Movie movie = new Movie(
-                101,
-                "Avengers Endgame",
-                "English",
-                "3 Hours",
-                250
-        );
+        Movie[] movies = {
+
+                new Movie(
+                        101,
+                        "Avengers Endgame",
+                        "English",
+                        "3 Hours",
+                        250),
+
+                new Movie(
+                        102,
+                        "Pushpa 2",
+                        "Hindi",
+                        "2h 45m",
+                        220),
+
+                new Movie(
+                        103,
+                        "KGF Chapter 2",
+                        "Hindi",
+                        "2h 50m",
+                        200)
+
+        };
 
         // Create Theater
-        Theater theater = new Theater(
-                1,
-                "PVR Cinemas",
-                "Mumbai"
-        );
+        Theater[] theaters = {
+
+                new Theater(
+                        1,
+                        "PVR",
+                        "Mumbai"),
+
+                new Theater(
+                        2,
+                        "INOX",
+                        "Mumbai"),
+
+                new Theater(
+                        3,
+                        "Cinepolis",
+                        "Mumbai")
+        };
+
+        Show[] shows = {
+
+                new Show(
+                        1,
+                        movies[0],
+                        theaters[0],
+                        "10:00 AM"),
+
+                new Show(
+                        2,
+                        movies[0],
+                        theaters[1],
+                        "2:00 PM"),
+
+                new Show(
+                        3,
+                        movies[1],
+                        theaters[2],
+                        "6:00 PM"),
+
+                new Show(
+                        4,
+                        movies[2],
+                        theaters[1],
+                        "9:30 PM")
+        };
 
         // Create User
         User user = new User(

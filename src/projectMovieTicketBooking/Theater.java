@@ -26,6 +26,10 @@ public class Theater {
         return theaterName;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
     @Override
     public String toString() {
 
