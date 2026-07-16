@@ -8,25 +8,21 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        // Create Movie
         Movie[] movies = {
 
-                new Movie(
-                        101,
+                new Movie(101,
                         "Avengers Endgame",
                         "English",
                         "3 Hours",
                         250),
 
-                new Movie(
-                        102,
+                new Movie(102,
                         "Pushpa 2",
                         "Hindi",
                         "2h 45m",
                         220),
 
-                new Movie(
-                        103,
+                new Movie(103,
                         "KGF Chapter 2",
                         "Hindi",
                         "2h 50m",
@@ -34,75 +30,68 @@ public class Main {
 
         };
 
-        // Create Theater
         Theater[] theaters = {
 
-                new Theater(
-                        1,
-                        "PVR",
+                new Theater(1,
+                        "PVR Cinemas",
                         "Mumbai"),
 
-                new Theater(
-                        2,
+                new Theater(2,
                         "INOX",
                         "Mumbai"),
 
-                new Theater(
-                        3,
+                new Theater(3,
                         "Cinepolis",
                         "Mumbai")
+
         };
 
         Show[] shows = {
 
-                new Show(
-                        1,
+                new Show(1,
                         movies[0],
                         theaters[0],
                         "10:00 AM"),
 
-                new Show(
-                        2,
+                new Show(2,
                         movies[0],
                         theaters[1],
                         "2:00 PM"),
 
-                new Show(
-                        3,
+                new Show(3,
                         movies[1],
                         theaters[2],
                         "6:00 PM"),
 
-                new Show(
-                        4,
+                new Show(4,
                         movies[2],
                         theaters[1],
                         "9:30 PM")
+
         };
 
-        // Create User
         User user = new User(
                 1001,
                 "Darshan",
-                "9876543210"
-        );
+                "9876543210");
 
-        // Seat Object
         Seat seat = new Seat();
-
-        // Ticket Object
         Ticket ticket = new Ticket();
+        Payment payment = new Payment();
 
         while (true) {
 
-            System.out.println("\n=================================");
-            System.out.println("     MOVIE TICKET BOOKING");
-            System.out.println("=================================");
-            System.out.println("1. View Movie");
-            System.out.println("2. View Theater");
-            System.out.println("3. View Seats");
+            System.out.println("\n======================================");
+            System.out.println("      MOVIE TICKET BOOKING");
+            System.out.println("======================================");
+
+            System.out.println("1. View Movies");
+            System.out.println("2. View Theaters");
+            System.out.println("3. View Shows");
             System.out.println("4. Book Ticket");
-            System.out.println("5. Exit");
+            System.out.println("5. View Seats");
+            System.out.println("6. Exit");
+
             System.out.print("Enter Choice : ");
 
             int choice = sc.nextInt();
@@ -111,31 +100,83 @@ public class Main {
 
                 case 1:
 
-                    movie.displayMovie();
+                    System.out.println("\n===== AVAILABLE MOVIES =====");
+
+                    for (Movie movie : movies) {
+
+                        movie.displayMovie();
+                    }
+
                     break;
 
                 case 2:
 
-                    theater.displayTheater();
+                    System.out.println("\n===== AVAILABLE THEATERS =====");
+
+                    for (Theater theater : theaters) {
+
+                        theater.displayTheater();
+                    }
+
                     break;
 
                 case 3:
 
-                    seat.displaySeats();
+                    System.out.println("\n===== AVAILABLE SHOWS =====");
+
+                    for (Show show : shows) {
+
+                        show.displayShow();
+                    }
+
                     break;
 
                 case 4:
 
+                    // Display Shows
+
+                    System.out.println("\n===== SELECT SHOW =====");
+
+                    for (Show show : shows) {
+
+                        show.displayShow();
+                    }
+
+                    System.out.print("\nEnter Show Number : ");
+
+                    int showChoice = sc.nextInt();
+
+                    if (showChoice < 1 || showChoice > shows.length) {
+
+                        System.out.println("Invalid Show!");
+
+                        break;
+                    }
+
+                    Show selectedShow = shows[showChoice - 1];
+
+                    Movie selectedMovie =
+                            selectedShow.getMovie();
+
+                    Theater selectedTheater =
+                            selectedShow.getTheater();
+
+                    // Seat Layout
+
                     seat.displaySeats();
 
-                    System.out.print("\nHow many seats do you want to book? : ");
+                    System.out.print("\nHow many seats do you want? : ");
+
                     int totalSeats = sc.nextInt();
 
-                    String[] bookedSeats = new String[totalSeats];
+                    String[] bookedSeats =
+                            new String[totalSeats];
 
                     for (int i = 0; i < totalSeats; i++) {
 
-                        System.out.print("Enter Seat " + (i + 1) + " (Example A1): ");
+                        System.out.print("Enter Seat "
+                                + (i + 1)
+                                + " : ");
 
                         String seatNo = sc.next();
 
@@ -146,32 +187,53 @@ public class Main {
                         } else {
 
                             System.out.println("Seat already booked or invalid!");
+
                             i--;
                         }
+
                     }
 
-                    Booking booking = new Booking(
-                            movie,
-                            theater,
-                            user,
-                            bookedSeats,
-                            totalSeats
-                    );
+                    Booking booking =
+                            new Booking(
+                                    selectedMovie,
+                                    selectedTheater,
+                                    user,
+                                    bookedSeats,
+                                    totalSeats);
 
-                    ticket.printTicket(booking);
+                    double gst =
+                            payment.calculateGST(
+                                    booking.getTotalAmount());
+
+                    double finalBill =
+                            payment.calculateFinalBill(
+                                    booking.getTotalAmount());
+
+                    ticket.printTicket(
+                            booking,
+                            selectedShow,
+                            gst,
+                            finalBill);
 
                     break;
 
                 case 5:
 
-                    System.out.println("\nThank You for using Movie Ticket Booking System.");
+                    seat.displaySeats();
+
+                    break;
+
+                case 6:
+
+                    System.out.println("\nThank You!");
+
                     sc.close();
+
                     return;
 
                 default:
 
                     System.out.println("Invalid Choice!");
-
             }
 
         }
