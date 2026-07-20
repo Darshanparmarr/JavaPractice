@@ -1,7 +1,5 @@
 package projectDigitalWallet;
 
-import projectUPIApp.Transaction;
-
 import java.util.ArrayList;
 
 public abstract class Wallet implements Payment{

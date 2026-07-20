@@ -1,7 +1,5 @@
 package projectDigitalWallet;
 
-import projectUPIApp.Transaction;
-
 public class UserWallet extends Wallet {
     public UserWallet(int id, String name, int pin, double balance){
         super(id, name, pin, balance);

@@ -1,6 +1,6 @@
 package projectUPIApp;
 
-public class Transaction extends projectDigitalWallet.Transaction {
+public class Transaction {
     private User sender;     
     private User receiver;     
     private double amount;
