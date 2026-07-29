@@ -3,7 +3,7 @@ package classesCollection.list;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListExample {
+public class ArrayListExample {
     public static void main(String[] args) {
         List<String> fruits = new ArrayList<>();
 
